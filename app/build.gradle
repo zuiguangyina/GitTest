@@ -41,11 +41,8 @@ task("gf"){
         File file=file("error.txt")
         println(file.text)
 //        outputs.file file
-        throw  new IllegalArgumentException("都是我的错")
         return  "报错"
     }
-
-
 }
 
 
