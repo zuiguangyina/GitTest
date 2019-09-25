@@ -2,13 +2,21 @@
 
 buildscript {
     ext.kotlin_version = '1.3.50'
+    ext {
+        gradlePluginVersion = '3.3.2'
+        lintVersion = '26.3.2'
+    }
     repositories {
         google()
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
         jcenter()
-        
+        maven { url "E:\\git\\github\\plugin5" }
+        maven { url "https://jitpack.io" }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.2'
+        classpath "com.android.tools.build:gradle:${gradlePluginVersion}"
+        classpath "com.gf.lintplugin:plugintest:9.9.8"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -19,7 +27,10 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
+        jcenter()
+        maven { url "https://jitpack.io" }
     }
 }
 

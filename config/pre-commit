@@ -1,0 +1,30 @@
+#!/bin/sh
+#
+# An example hook script to verify what is about to be committed.
+# Called by "git commit" with no arguments.  The hook should
+# exit with non-zero status after issuing an appropriate message if
+# it wants to stop the commit.
+#
+# To enable this hook, rename this file to "pre-commit".
+# //初始化项目，还没有版本的时候
+if git rev-parse --verify HEAD >/dev/null 2>&1
+then
+against=HEAD
+else
+# Initial commit: diff against an empty tree object
+against=$(git hash-object -t tree /dev/null)
+fi
+
+
+#dirname $0，取得当前执行的脚本文件的父目录
+SCRIPT_DIR=$(dirname "$0")
+# //脚本的绝对路径
+SCRIPT_ABS_PATH=`cd "$SCRIPT_DIR"; pwd`
+
+#必须这样写,执行我们的脚本,gf是Task的名字
+$SCRIPT_ABS_PATH/../../gradlew   gf
+if [ $? -eq 0   ]; then
+echo "gf OK"
+else
+exit [[ $ERROR_INFO =~ "gf" ]] && exit 1
+fi
